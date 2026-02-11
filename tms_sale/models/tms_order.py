@@ -45,8 +45,7 @@ class TMSOrder(models.Model):
             if "stage_id" in vals:
                 stage = self.env.ref("tms.tms_stage_order_completed")
                 if vals["stage_id"] == stage.id:
-                    for line in order.sale_id.order_line:
-                        line.qty_delivered = line.product_uom_qty
+                    order.sale_line_id.qty_delivered = order.sale_line_id.product_uom_qty
 
             if "seat_ticket_ids" in vals:
                 tickets = vals.get("seat_ticket_ids", [])
